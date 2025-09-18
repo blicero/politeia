@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Time-stamp: <2025-09-18 16:38:19 krylon>
+# Time-stamp: <2025-09-18 22:13:03 krylon>
 #
 # /data/code/python/politeia/model.py
 # created on 18. 09. 2025
@@ -17,7 +17,18 @@ politeia.model
 """
 
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from enum import Enum, auto
+
+
+class Work(Enum):
+    """Work specifies the area a group of people are working in."""
+
+    Farming = auto()
+    Fishing = auto()
+    Construction = auto()
+    Science = auto()
+    Handiwork = auto()
 
 
 @dataclass(slots=True, kw_only=True)
@@ -26,7 +37,8 @@ class Polis:
 
     name: str
     population: int
-
+    food: int
+    work: map[Work, int] = field(default_factory=dict)
 
 # Local Variables: #
 # python-indent: 4 #
